@@ -74,12 +74,18 @@ on Google Play.
    `?key=<it>` to the push URL.
 6. License testers (Setup → License testing) for test purchases.
 
-### Firebase (Android push)
-1. A Firebase project with two Android apps:
-   `com.base69900c52dad19ccce6c947de.app` and `…app.dev` (test builds).
-2. Download `google-services.json` to `android/app/` (git-ignored) and rebuild.
-3. Project settings → Service accounts → Generate new private key. Base44
-   secret: `FIREBASE_SERVICE_ACCOUNT_JSON`.
+### Firebase (Android push) — done 12 Nov 2026
+- Firebase project **Ratify Music** (`ratify-music`, project number
+  383336075158) on the developer's Google account, with Analytics and Gemini
+  off. Android apps `com.base69900c52dad19ccce6c947de.app` and `…app.dev`.
+  Ownership can be handed over any time (Project settings → Users and
+  permissions → add the owner's Google account as Owner).
+- `google-services.json` is in `android/app/` (git-ignored; the developer keeps
+  a copy). Builds made with it register for push.
+- Tested 12 Nov: a test build got an FCM token, and a push sent through the
+  site's own `sendPushToUser` arrived on the device.
+- Still to do: Base44 secret `FIREBASE_SERVICE_ACCOUNT_JSON` = the project's
+  Admin SDK service-account key (held by the developer, never committed).
 
 ### Base44
 - After syncing the repo, **Publish**. Check that the workflow "Send Push on New
