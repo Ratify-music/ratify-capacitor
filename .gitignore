@@ -23,3 +23,12 @@ build/
 ios/DerivedData*/
 *.zip
 store/.screenshot-sim-udid
+
+# Android: upload key, its passwords, and the Firebase config (public repo)
+android/keystore/
+android/keystore.properties
+*.jks
+*.keystore
+android/app/google-services.json
+*.aab
+*.apk

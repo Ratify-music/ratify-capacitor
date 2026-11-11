@@ -14,6 +14,11 @@
 	         AutoFill offers the site's saved logins as "Ratify Music".
 	       applinks: links to the site open the app.
 	     MusicKit needs no entitlement; it is an App Service on the App ID. -->
+	<!-- Push notifications (APNs) for every in-app notification; the site
+	     registers through Capacitor's PushNotifications plugin. Xcode signs
+	     App Store builds with the production environment. -->
+	<key>aps-environment</key>
+	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>webcredentials:ratifymusic.com</string>

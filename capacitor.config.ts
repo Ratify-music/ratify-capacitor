@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 /**
- * Ratify Music: self-managed Capacitor iOS shell around the Base44 app.
+ * Ratify Music: self-managed Capacitor iOS and Android shell around the Base44 app.
  *
  * The shell loads the published Base44 site on its custom domain,
  * ratifymusic.com (connected in Base44, DNS at GoDaddy, 16 Oct 2026), over
@@ -13,7 +13,15 @@ import type { CapacitorConfig } from '@capacitor/cli';
  *     the MusicKit framework, for the bridge the site already has
  *     (src/lib/nativeMusicKit.js in the Base44 repo).
  *   - Base44Auth: "Continue with Apple / Google / Facebook / Microsoft" in an
- *     ASWebAuthenticationSession, because Google refuses OAuth in WebViews.
+ *     ASWebAuthenticationSession (iOS) or a Custom Tab (Android), because
+ *     Google refuses OAuth in WebViews.
+ *   - StoreKit (iOS) / PlayBilling (Android): in-app purchases of credits,
+ *     Premium, Live Host and the 7-Credit Plan for the site's store pages
+ *     (src/lib/nativePurchases.js in the Base44 repo).
+ *   - PushNotifications (Capacitor plugin): every in-app notification also
+ *     arrives as a push (src/lib/nativePush.js).
+ *   - Android: Apple Music sign-in in a popup window over the app
+ *     (MainActivity.openPopup), where MusicKit JS hands the token back.
  *
  * `www/` holds only the offline screen (`server.errorPath`) and
  * shell-bridge.js, which the native side injects into the site's pages.
@@ -99,20 +107,31 @@ const config: CapacitorConfig = {
     scrollEnabled: true,
   },
 
+  android: {
+    backgroundColor: SURFACE,
+    allowMixedContent: false,
+  },
+
   plugins: {
     SystemBars: {
       // Built into Capacitor 8. 'DARK' means light status-bar icons, over the
       // app's black pages.
       style: 'DARK',
-      // The page reads real env() insets from WebKit.
-      insetsHandling: 'native',
+      // Android only. The page reads real env() insets (WebKit on iOS; on
+      // Android, MainActivity.fitSystemBars passes them through for WebView
+      // 140+ and pads the layout itself on older WebViews).
+      insetsHandling: 'disable',
     },
     Base44Auth: {
       legacyHosts: LEGACY_HOSTS,
     },
+    PushNotifications: {
+      // Show a push as a banner even while the app is open (iOS).
+      presentationOptions: ['badge', 'sound', 'alert'],
+    },
     // No StatusBar, Keyboard, SplashScreen or App plugin: nothing on the site
     // calls them. The launch screen is held natively until the first page has
-    // painted (ShellViewController.swift).
+    // painted (ShellViewController.swift, MainActivity.java).
   },
 };
 

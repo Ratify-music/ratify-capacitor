@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ratify Music</string>
+    <string name="title_activity_main">Ratify Music</string>
+    <string name="package_name">com.base69900c52dad19ccce6c947de.app</string>
+    <string name="custom_url_scheme">com.base69900c52dad19ccce6c947de.app</string>
+</resources>

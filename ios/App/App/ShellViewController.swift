@@ -305,6 +305,7 @@ final class ShellBridgeViewController: CAPBridgeViewController {
         // which is how the site finds NativeMusicKit.
         bridge?.registerPluginInstance(NativeMusicKitPlugin())
         bridge?.registerPluginInstance(Base44AuthPlugin())
+        bridge?.registerPluginInstance(StoreKitPlugin())
 
         // Added here, not in webViewConfiguration(for:): Capacitor replaces that
         // configuration's userContentController with its own right afterwards,

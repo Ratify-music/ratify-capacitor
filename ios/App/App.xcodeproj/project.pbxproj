@@ -18,6 +18,7 @@
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		7044E0B5C5DEB5A735FBBBA6 /* StoreKitPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9010F91A6FDC9AC7C39F11 /* StoreKitPlugin.swift */; };
 		9582B6832FE993A70072D4E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582B6822FE993A50072D4E8 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		5B9010F91A6FDC9AC7C39F11 /* StoreKitPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StoreKitPlugin.swift; sourceTree = "<group>"; };
 		9582B6822FE993A50072D4E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		9ABB3BB86649F9C9EBA50C68 /* App.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				EB854A702A8647FE5A0FF089 /* NativeMusicKitPlugin.swift */,
 				FC5AAB84AFE22570C7B395BE /* Base44AuthPlugin.swift */,
 				9ABB3BB86649F9C9EBA50C68 /* App.entitlements */,
+				5B9010F91A6FDC9AC7C39F11 /* StoreKitPlugin.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				4CBD8C6C4397C788E0034F8F /* ShellViewController.swift in Sources */,
 				27A08F7D9B4FF58EE08589A5 /* NativeMusicKitPlugin.swift in Sources */,
 				282BE98DEA9ADADD2AC495C3 /* Base44AuthPlugin.swift in Sources */,
+				7044E0B5C5DEB5A735FBBBA6 /* StoreKitPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Debug builds (package .dev) show as "Ratify Dev" next to the Play app. -->
+<resources>
+    <string name="app_name">Ratify Dev</string>
+    <string name="title_activity_main">Ratify Dev</string>
+</resources>

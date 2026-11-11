@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Overrides the layout of the same name in the Capacitor library (app
+     resources win the merge), so BridgeActivity inflates this instead: the
+     WebView under a page-load bar. Capacitor finds the WebView by @id/webview,
+     so that id must not change. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shell_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_surface">
+
+    <com.getcapacitor.CapacitorWebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Page-load bar along the top of the page. -->
+    <ProgressBar
+        android:id="@+id/page_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:indeterminate="false"
+        android:max="100"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        android:progressDrawable="@drawable/page_progress"
+        android:visibility="invisible" />
+</FrameLayout>

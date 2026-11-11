@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace = "com.base69900c52dad19ccce6c947de.app"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.base69900c52dad19ccce6c947de.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        // Must be higher than any versionCode already uploaded to the Play listing
+        // (Play Console → Test and release → App bundle explorer). Base44's own
+        // build is live as 2.133512.0 (Sep 2026).
+        // Override without editing: ./gradlew bundleRelease -PratifyVersionCode=<n>
+        versionCode((project.findProperty('ratifyVersionCode') ?: '10') as int)
+        versionName "3.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    // Release signing from android/keystore.properties (git-ignored):
+    //   storeFile=keystore/ratify-upload.jks
+    //   storePassword=…  keyAlias=…  keyPassword=…
+    // Play only accepts bundles signed with the app's registered upload key.
+    // Base44 holds the current one, so Play needs an upload-key reset to ours.
+    def keystoreProperties = new Properties()
+    def keystoreFile = rootProject.file('keystore.properties')
+    if (keystoreFile.exists()) {
+        keystoreFile.withInputStream { keystoreProperties.load(it) }
+    }
+    signingConfigs {
+        if (keystoreFile.exists()) {
+            release {
+                storeFile rootProject.file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+    buildTypes {
+        // Installs beside the Play build on a test phone (a different package),
+        // so testing never replaces or signs out a member's real app.
+        debug {
+            applicationIdSuffix ".dev"
+        }
+        release {
+            if (keystoreFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    // Document-start injection of www/shell-bridge.js and the X-Requested-With
+    // allow-list (MainActivity).
+    implementation "androidx.webkit:webkit:$androidxWebkitVersion"
+    // Custom Tab for Google sign-in (Base44AuthPlugin).
+    implementation "androidx.browser:browser:1.8.0"
+    // Google Play Billing (PlayBillingPlugin).
+    implementation "com.android.billingclient:billing:9.1.0"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

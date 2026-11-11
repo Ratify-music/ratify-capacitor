@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/app_surface</item>
+        <item name="colorPrimaryDark">@color/app_surface</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <!-- Shows behind the page while it loads and on overscroll. DayNight's
+             default is white on a light-mode phone, which would flash before a
+             near-black app. -->
+        <item name="android:windowBackground">@color/app_surface</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:background">@drawable/splash</item>
+        <!-- Android 12+ draws its own launch screen (the launcher icon on this
+             colour) instead of @drawable/splash. -->
+        <item name="windowSplashScreenBackground">@color/app_surface</item>
+        <!-- MainActivity installs this splash itself and holds it until the
+             first page has painted, then switches to the app theme. -->
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+    </style>
+</resources>

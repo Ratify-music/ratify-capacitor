@@ -1,5 +1,5 @@
 // Injected into the Ratify site at document start by the native shell
-// (ios/App/App/ShellViewController.swift), after Capacitor's own bridge and
+// (ios/App/App/ShellViewController.swift, android MainActivity.java), after Capacitor's own bridge and
 // the plugin objects it exports. The site itself is not changed.
 (function () {
   // iOS adds document-start scripts to every page the WebView shows, not

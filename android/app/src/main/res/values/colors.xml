@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The app surface: ratifymusic.com's theme-color, and SURFACE in
+         capacitor.config.ts. -->
+    <color name="app_surface">#080808</color>
+    <!-- Ratify red, as on iOS (ShellViewController.accent). Page-load bar. -->
+    <color name="accent">#CC161E</color>
+</resources>
