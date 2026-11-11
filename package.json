@@ -1,0 +1,22 @@
+{
+  "name": "ratify-music-ios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ratify Music: Capacitor iOS shell for the Base44 app, with a native MusicKit plugin",
+  "type": "module",
+  "scripts": {
+    "sync": "npx cap sync ios",
+    "ios": "npx cap sync ios && npx cap open ios",
+    "assets": "node tools/make-assets.mjs && npx capacitor-assets generate --ios --iconBackgroundColor '#080808' --splashBackgroundColor '#080808' --splashBackgroundColorDark '#080808'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2",
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3"
+  }
+}

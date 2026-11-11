@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Both of the site's addresses serve an apple-app-site-association that
+	     names 97Z6JVW7XJ.com.base69900c52dad19ccce6c947de.app under
+	     webcredentials and applinks (Base44 generates it for its own build of
+	     this app). With the same bundle id and team, these lines are all iOS
+	     needs. ratifymusic.com is the custom domain the app loads; the
+	     base44.app address is kept so passwords saved for it are still
+	     offered and old links still open the app:
+	       webcredentials: the social sign-in sheet can return to
+	         https://<host>/native-auth (Base44AuthPlugin), and Password
+	         AutoFill offers the site's saved logins as "Ratify Music".
+	       applinks: links to the site open the app.
+	     MusicKit needs no entitlement; it is an App Service on the App ID. -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:ratifymusic.com</string>
+		<string>applinks:ratifymusic.com</string>
+		<string>webcredentials:master-ratify-music-v1production-copy.base44.app</string>
+		<string>applinks:master-ratify-music-v1production-copy.base44.app</string>
+	</array>
+</dict>
+</plist>
